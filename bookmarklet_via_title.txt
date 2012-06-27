@@ -1,7 +1,9 @@
-javascript:(function(){doc=document.documentElement.innerHTML;
+javascript:(function(){
+document.body.appendChild(document.createElement('script')).src='https://github.com/devkral/librarything_link/blob/master/to_library_thing_name_transformation.js';
+doc=document.documentElement.innerHTML;
 wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
 wo=wo.replace(/\<[^\>]+\>/g,"");
 wo=wo.replace(/– Wikipedia/,"");
-nw=window.open();
-nw.document.write('<html><head><title>test</title><meta http-equiv="content-type" content="text/html;charset=utf-8"/></head><body>'+wo +'</body></html>');
-nw.document.close();})()
+ready="http://www.librarything.de/author/"+transform_to_name(wo);
+window.open(ready);
+})()
