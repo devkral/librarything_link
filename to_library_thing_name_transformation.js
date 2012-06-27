@@ -41,7 +41,7 @@ function transform_to_name(input)
 		workobject=workobject.substring(temp1+1); //autocomplete end
 	}
 	
-	temp1=workobject.IndexOf('(');
+	temp1=workobject.indexOf('(');
 	if (temp1!=-1)
 	{
 		workobject=workobject.substring(0,temp1);
@@ -88,8 +88,8 @@ function transform_to_name(input)
 	return workobject;
 }
 
-//detect names in wikipedia
-function detect_names(input)
+//detect name in wikipedia
+function detect_name(input)
 {
 //<h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
 		

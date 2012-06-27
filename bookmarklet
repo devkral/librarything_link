@@ -1,5 +1,3 @@
-javascript:(function(){
-
-
-
-})(https://github.);
+javascript:(function(){temp=detect_name(document.documentElement.innerHTML);
+window.open("http://www.librarything.de/author/"+temp);
+})(https://github.com/devkral/librarything_link/blob/master/to_library_thing_name_transformation.js)
