@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Test</title>
+  <meta name="Wecker">
+  <script language="JavaScript" type="text/javascript">
+<!--
+//if the method is not implemented
+if (!String.trim) {
+ String.prototype.trim = function () {
+  return this.replace(/^(\s|\u00A0)+|(\s|\u00A0)+$/g, '');
+  };
+}
+
+function transform_to_name(input)
+{
+	workobject=new String(input);
+	var temp1=workobject.lastIndexOf(':');
+	if (temp1!=-1)
+	{
+		workobject=workobject.substring(temp1+1); //autocomplete end
+	}
+	
+	var temp2=workobject.lastIndexOf('/');
+	if (temp2!=-1)
+	{
+		workobject=workobject.substring(temp2+1); //autocomplete end
+	}
+	
+	var temp3=workobject.lastIndexOf('(');
+	if (temp3!=-1)
+	{
+		workobject=workobject.substring(temp3+1); //autocomplete end
+		workobject=workobject.substring(0,workobject.lastIndexOf(')')-1); // dismiss the closing ')' sign
+	}
+	
+	workobject=workobject.trim();
+	return workobject
+}
+
+function letsdoit()
+{
+	//alert(document.output1.value)//="transform_to_name(document.input1.value)";
+	alert(document.input1.value)
+}
+
+
+//-->
+  </script>
+</head>
+<body>
+<input name="input1" type="text">
+<input name="output1" type="text">
+<br>
+<input name="start" value="Start" type="button" onclick="letsdoit()">
+
+</body>
+</html>
