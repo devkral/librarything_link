@@ -8,7 +8,7 @@ if (!String.trim) {
 
 function newlines_to_onespace(input)
 {
-	return input.replace(/\s+/g,' ')
+	return input.replace(/\s+/g,' ');
 }
 
 
@@ -24,7 +24,7 @@ function swap_name(input)
 	return wo.replace(/ /g,'');
 }
 
-//still contains unencoded utf8 characters
+// still contains unencoded utf8 characters
 function transform_to_name(input)
 {
 	workobject=newlines_to_onespace(input).toLowerCase();
@@ -32,66 +32,66 @@ function transform_to_name(input)
 	temp1=workobject.lastIndexOf(':');
 	if (temp1!=-1)
 	{
-		workobject=workobject.substring(temp1+1); //autocomplete end
+		workobject=workobject.substring(temp1+1); // autocomplete end
 	}
 	
 	temp1=workobject.lastIndexOf('/');
 	if (temp1!=-1)
 	{
-		workobject=workobject.substring(temp1+1); //autocomplete end
+		workobject=workobject.substring(temp1+1); // autocomplete end
 	}
 	
 	temp1=workobject.indexOf('(');
 	if (temp1!=-1)
 	{
 		workobject=workobject.substring(0,temp1);
-		//workobject=workobject.substring(temp1+1); //autocomplete end
-		//workobject=workobject.substring(0,workobject.lastIndexOf(')')); // dismiss the closing ')' sign (why is workobject.lastIndexOf(')')-1 wrong? )
+		// workobject=workobject.substring(temp1+1); // autocomplete end
+		// workobject=workobject.substring(0,workobject.lastIndexOf(')')); // dismiss the closing ')' sign (why is workobject.lastIndexOf(')')-1 wrong? )
 	}
 
-	//part two: adjust the names to standards	
+	// part two: adjust the names to standards	
 	workobject=workobject.replace(/\u0027/g,'');
 	
-	//remove - between compound names
+	// remove - between compound names
 	workobject=workobject.replace(/-/g,'');
 	
-	//acording to http://www.fileformat.info/info/unicode/block/latin_supplement/list.htm
-	//character s
+	// acording to http://www.fileformat.info/info/unicode/block/latin_supplement/list.htm
+	// character s
 	workobject=workobject.replace(/\u00df/g,'s');
-	//character a
+	// character a
 	workobject=workobject.replace(/[\u00e0-\u00e6]/g,'a');
-	//character c
+	// character c
 	workobject=workobject.replace(/\u00e7/g,'c');
-	//character e
+	// character e
 	workobject=workobject.replace(/[\u00e8-\u00eb]/g,'e');
 	workobject=workobject.replace(/\u00f0/g,'e');
-	//character i
+	// character i
 	workobject=workobject.replace(/[\u00ec-\u00ef]/g,'i');
-	//character n
+	// character n
 	workobject=workobject.replace(/\u00f1/g,'n');
-	//character o (includes division sign)
+	// character o (includes division sign)
 	workobject=workobject.replace(/[\u00f2-\u00f8]/g,'o');
-	/////workobject=workobject.replace(/\u00f8/g,'o');
-	//character u
+	// workobject=workobject.replace(/\u00f8/g,'o');
+	// character u
 	workobject=workobject.replace(/[\u00f9-\u00fd]/g,'u');
-	//character y (includes thorn a char I don't know)
+	// character y (includes thorn a char I don't know)
 	workobject=workobject.replace(/[\u00fd-\u00ff]/g,'y');
-	////character t
-	////workobject=workobject.replace(/\u00fe/g,'t');
+	// character t
+	// workobject=workobject.replace(/\u00fe/g,'t');
 	
-	workobject=workobject.trim(); //remove trailing spaces
+	workobject=workobject.trim(); // remove trailing spaces
 	
-	//now perform operations with a clean object
+	// now perform operations with a clean object
 	
 	workobject=swap_name(workobject);
 	workobject=workobject.substring(0,20);
 	return workobject;
 }
 
-//detect name in wikipedia; works bad
+// detect name in wikipedia; works bad
 function detect_name(input)
 {
-//<h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
+// <h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
 		
 	workobject=input;
 	workobject=workobject.substr(workobject.indexOf('\"firstHeading\"'),workobject.indexOf('\<\/span'));
@@ -99,8 +99,8 @@ function detect_name(input)
 	return transform_to_name(workobject);
 }
 
-//experimental
-function use_title_name_autoload()
+// experimental
+function use_title_name()
 {
 	doc=document.documentElement.innerHTML;
 	wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
@@ -109,4 +109,4 @@ function use_title_name_autoload()
 	ready="http://www.librarything.de/author/"+transform_to_name(wo);
 	window.open(ready);
 }
-onload=use_title_name_autoload();
+
