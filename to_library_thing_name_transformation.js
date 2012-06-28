@@ -109,4 +109,4 @@ function use_title_name_autoload()
 	ready="http://www.librarything.de/author/"+transform_to_name(wo);
 	window.open(ready);
 }
-
+onload=use_title_name_autoload();

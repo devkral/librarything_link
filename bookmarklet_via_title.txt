@@ -1,11 +1,5 @@
-javascript:var ad = document.createElement('script');
-ad.type='text/javascript';
+javascript:var add = document.createElement('script');
+add.type='text/javascript';
 document.body.appendChild(ad);
-ad.src='https://raw.github.com/devkral/librarything_link/master/to_library_thing_name_transformation.js';
-doc=document.documentElement.innerHTML;
-wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
-wo=wo.replace(/\<[^\>]+\>/g,"");
-wo=wo.replace(/– Wikipedia/,"");
-ready="http://www.librarything.de/author/"+transform_to_name(wo);
-window.open(ready);
+add.src='https://raw.github.com/devkral/librarything_link/master/to_library_thing_name_transformation.js';
 void(0);
