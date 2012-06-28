@@ -88,7 +88,7 @@ function transform_to_name(input)
 	return workobject;
 }
 
-//detect name in wikipedia
+//detect name in wikipedia; works bad
 function detect_name(input)
 {
 //<h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
@@ -98,3 +98,15 @@ function detect_name(input)
 	workobject=workobject.replace(/.*\>(.*)\<\/.*/,"$1");
 	return transform_to_name(workobject);
 }
+
+//experimental
+function use_title_name_autoload()
+{
+	doc=document.documentElement.innerHTML;
+	wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
+	wo=wo.replace(/\<[^\>]+\>/g,"");
+	wo=wo.replace(/– Wikipedia/,"");
+	ready="http://www.librarything.de/author/"+transform_to_name(wo);
+	window.open(ready);
+}
+
