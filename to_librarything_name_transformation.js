@@ -1,45 +1,45 @@
-//if the method is not implemented
+// if the method is not implemented
 if (!String.trim) {
  String.prototype.trim = function () {
   return this.replace(/^(\s|\u00A0)+|(\s|\u00A0)+$/g, '');
   };
-}
+};
 
 
 function newlines_to_onespace(input)
 {
 	return input.replace(/\s+/g,' ');
-}
+};
 
 
-//just intern
+// just intern
 function swap_helper(a,b,c)
 {
     return c+b;
-}
+};
 
 function swap_name(input)
 {
 	wo=input.replace(/(^.+) (.+$)/,swap_helper);
 	return wo.replace(/ /g,'');
-}
+};
 
 // still contains unencoded utf8 characters
-function transform_to_name(input)
+function transform_to_name(inputinnerHTML)
 {
-	workobject=newlines_to_onespace(input).toLowerCase();
+	workobject=newlines_to_onespace(inputinnerHTML).toLowerCase();
 	var temp1;
 	temp1=workobject.lastIndexOf(':');
 	if (temp1!=-1)
 	{
 		workobject=workobject.substring(temp1+1); // autocomplete end
-	}
+	};
 	
 	temp1=workobject.lastIndexOf('/');
 	if (temp1!=-1)
 	{
 		workobject=workobject.substring(temp1+1); // autocomplete end
-	}
+	};
 	
 	temp1=workobject.indexOf('(');
 	if (temp1!=-1)
@@ -47,7 +47,7 @@ function transform_to_name(input)
 		workobject=workobject.substring(0,temp1);
 		// workobject=workobject.substring(temp1+1); // autocomplete end
 		// workobject=workobject.substring(0,workobject.lastIndexOf(')')); // dismiss the closing ')' sign (why is workobject.lastIndexOf(')')-1 wrong? )
-	}
+	};
 
 	// part two: adjust the names to standards	
 	workobject=workobject.replace(/\u0027/g,'');
@@ -86,27 +86,26 @@ function transform_to_name(input)
 	workobject=swap_name(workobject);
 	workobject=workobject.substring(0,20);
 	return workobject;
-}
+};
 
 // detect name in wikipedia; works bad
-function detect_name(input)
+function detect_name(inputinnerHTML)
 {
 // <h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
 		
-	workobject=input;
+	workobject=inputinnerHTML;
 	workobject=workobject.substr(workobject.indexOf('\"firstHeading\"'),workobject.indexOf('\<\/span'));
 	workobject=workobject.replace(/.*\>(.*)\<\/.*/,"$1");
 	return transform_to_name(workobject);
-}
+};
 
-// experimental
-function use_title_name()
+// use wikipedia's title name
+function use_title_name(inputinnerHTML)
 {
-	doc=document.documentElement.innerHTML;
+	workobject=inputinnerHTML;
 	wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
 	wo=wo.replace(/\<[^\>]+\>/g,"");
 	wo=wo.replace(/– Wikipedia/,"");
-	ready="http://www.librarything.de/author/"+transform_to_name(wo);
-	window.open(ready);
-}
+	return "http://www.librarything.de/author/"+transform_to_name(wo);
+};
 

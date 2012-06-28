@@ -1,1 +1,19 @@
-come from wikipedia on librarything
+
+
+Installation:
+Open a "new bookmark"-dialog (if the bookmark has no address line: save the bookmark and edit it).
+Insert the content of bookmarklet_via_title_ready.txt in the address line and name the bookmark like you want.
+
+"Compiling":
+new method: Use converter script: convert_to_bookmarklet.sh (sorry, had no good idea how I should call it) 
+old method: Remove the newlines in bookmarklet_via_title.txt until you have one line left.
+
+bookmarklet_via_title.txt is just for a better overview over the code. 
+to_library_thing_name_transformation.js is for people wanting a script in their website
+
+
+Hacking:
+Every statement has to end with ; except functions and if clauses when they end with }.
+
+Thanks:
+Thanks to @work for his brilliant example.
