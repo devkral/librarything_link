@@ -102,8 +102,8 @@ function detect_name(inputinnerHTML)
 // use wikipedia's title name
 function use_title_name(inputinnerHTML)
 {
-	wo=inputinnerHTML;
-	wo=wo.substring(wo.indexOf('\<title\>'), wo.indexOf('\<\/title\>'));
+	workobject=inputinnerHTML;
+	workobject=workobject.substring(workobject.indexOf('\<title\>'), workobject.indexOf('\<\/title\>'));
 	workobject=workobject.replace(/\<[^\>]+\>/g,"");
 	workobject=workobject.replace(/^[^\<]+\>/g,"");
 	workobject=workobject.replace(/\<[^\>]+$/g,"");
