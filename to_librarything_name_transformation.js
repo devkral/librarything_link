@@ -93,10 +93,10 @@ function use_firstHeading(inputinnerHTML)
 {
 	workobject=inputinnerHTML;
 	workobject=workobject.substring(workobject.indexOf('id=\"firstHeading\"'),workobject.indexOf('\<\/span\>'));
-	workobject=workobject.replace(/\<[^\>]+\>/g,"");
-	workobject=workobject.replace(/^[^\<]+\>/g,"");
-	workobject=workobject.replace(/\<[^\>]+$/g,"");
-	return "http://www.librarything.de/author/"+transform_to_name(workobject);
+	workobject=workobject.replace(/\<[^\>]+\>/g,'');
+	workobject=workobject.replace(/^[^\<]+\>/g,'');
+	workobject=workobject.replace(/\<[^\>]+$/g,'');
+	return 'http://www.librarything.de/author/'+transform_to_name(workobject);
 };
 
 // use wikipedia's title name
@@ -104,10 +104,10 @@ function use_title_name(inputinnerHTML)
 {
 	workobject=inputinnerHTML;
 	workobject=workobject.substring(workobject.indexOf('\<title\>'), workobject.indexOf('\<\/title\>'));
-	workobject=workobject.replace(/\<[^\>]+\>/g,"");
-	workobject=workobject.replace(/^[^\<]+\>/g,"");
-	workobject=workobject.replace(/\<[^\>]+$/g,"");
-	wo=wo.replace(/– Wikipedia/,"");
-	return "http://www.librarything.de/author/"+transform_to_name(wo);
+	workobject=workobject.replace(/\<[^\>]+\>/g,'');
+	workobject=workobject.replace(/^[^\<]+\>/g,'');
+	workobject=workobject.replace(/\<[^\>]+$/g,'');
+	wo=wo.replace(/– Wikipedia/,'');
+	return 'http://www.librarything.de/author/'+transform_to_name(wo);
 };
 
