@@ -8,5 +8,5 @@ fi
 
 
 sed -e 's/\/\/ .*//g' -e "s/^\s\+//g" -e "s/\s\+$//g" -e '/^$/d' "$1" | tr -d "\n"
-echo -e "\n"
+echo -e ""
 

@@ -88,17 +88,6 @@ function transform_to_name(inputinnerHTML)
 	return workobject;
 }
 
-// use firstHeading
-function detect_name(inputinnerHTML)
-{
-	workobject=inputinnerHTML;
-	workobject=workobject.substring(workobject.indexOf('id=\"firstHeading\"'),workobject.indexOf('\<\/span\>'));
-	workobject=workobject.replace(/\<[^\>]+\>/g,"");
-	workobject=workobject.replace(/^[^\<]+\>/g,"");
-	workobject=workobject.replace(/\<[^\>]+$/g,"");
-	return "http://www.librarything.de/author/"+transform_to_name(workobject);
-}
-
 // use wikipedia's title name
 function use_title_name(inputinnerHTML)
 {
