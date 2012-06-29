@@ -88,23 +88,25 @@ function transform_to_name(inputinnerHTML)
 	return workobject;
 };
 
-// detect name in wikipedia; works bad
+// use firstHeading
 function detect_name(inputinnerHTML)
 {
-// <h1 id="firstHeading" class="firstHeading"><span dir="auto">Günter Grass</span></h1>
-		
 	workobject=inputinnerHTML;
-	workobject=workobject.substr(workobject.indexOf('\"firstHeading\"'),workobject.indexOf('\<\/span'));
-	workobject=workobject.replace(/.*\>(.*)\<\/.*/,"$1");
-	return transform_to_name(workobject);
+	workobject=workobject.substring(workobject.indexOf('id=\"firstHeading\"'),workobject.indexOf('\<\/span\>'));
+	workobject=workobject.replace(/\<[^\>]+\>/g,"");
+	workobject=workobject.replace(/^[^\<]+\>/g,"");
+	workobject=workobject.replace(/\<[^\>]+$/g,"");
+	return "http://www.librarything.de/author/"+transform_to_name(workobject);
 };
 
 // use wikipedia's title name
 function use_title_name(inputinnerHTML)
 {
-	workobject=inputinnerHTML;
-	wo=doc.substr(doc.indexOf('\<title\>')-1, doc.indexOf('\<\/title\>')+2);
-	wo=wo.replace(/\<[^\>]+\>/g,"");
+	wo=inputinnerHTML;
+	wo=wo.substring(wo.indexOf('\<title\>'), wo.indexOf('\<\/title\>'));
+	workobject=workobject.replace(/\<[^\>]+\>/g,"");
+	workobject=workobject.replace(/^[^\<]+\>/g,"");
+	workobject=workobject.replace(/\<[^\>]+$/g,"");
 	wo=wo.replace(/– Wikipedia/,"");
 	return "http://www.librarything.de/author/"+transform_to_name(wo);
 };

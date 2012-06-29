@@ -13,7 +13,7 @@ to_library_thing_name_transformation.js is for people wanting a script in their 
 
 
 Hacking:
-Every statement has to end with ; except functions and if clauses when they end with }.
+Every statement has to end with ; except functions and if clauses when they end with }. Comments with // need a space after // Elsewise I can't be sure that I don't delete a http:// statement
 
 Thanks:
 Thanks to @work for his brilliant example.
