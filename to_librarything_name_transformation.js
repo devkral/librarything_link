@@ -109,8 +109,8 @@ function use_title_name(inputinnerHTML)
 	workobject=workobject.replace(/\<[^\>]+\>/g,'');
 	workobject=workobject.replace(/^[^\<]+\>/g,'');
 	workobject=workobject.replace(/\<[^\>]+$/g,'');
-	workobject=workobject.replace(/– Wiki.*/,'');
-	workobject=workobject.replace(/- Wiki.*/,'');
+	workobject=workobject.replace(/– .*/,'');
+	workobject=workobject.replace(/- .*/,'');
 	workobject=workobject.replace(/\| .*/,'');
 	return transform_to_name(workobject);
 };
