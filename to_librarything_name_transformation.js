@@ -25,9 +25,11 @@ function swap_name(input)
 };
 
 // still contains unencoded utf8 characters
-function transform_to_name(inputinnerHTML)
+function transform_to_name(inputName)
 {
-	workobject=newlines_to_onespace(inputinnerHTML).toLowerCase();
+	workobject=newlines_to_onespace(inputName).toLowerCase();
+	
+	workobject=workobject.replace(/author:/g,'');
 	var temp1;
 	temp1=workobject.lastIndexOf(':');
 	if (temp1!=-1)
@@ -96,10 +98,10 @@ function use_firstHeading(inputinnerHTML)
 	workobject=workobject.replace(/\<[^\>]+\>/g,'');
 	workobject=workobject.replace(/^[^\<]+\>/g,'');
 	workobject=workobject.replace(/\<[^\>]+$/g,'');
-	return 'http://www.librarything.de/author/'+transform_to_name(workobject);
+	return transform_to_name(workobject);
 };
 
-// use wikipedia's title name
+// use wikipedia's or librarything's title name
 function use_title_name(inputinnerHTML)
 {
 	workobject=inputinnerHTML;
@@ -107,7 +109,9 @@ function use_title_name(inputinnerHTML)
 	workobject=workobject.replace(/\<[^\>]+\>/g,'');
 	workobject=workobject.replace(/^[^\<]+\>/g,'');
 	workobject=workobject.replace(/\<[^\>]+$/g,'');
-	wo=wo.replace(/– Wikipedia/,'');
-	return 'http://www.librarything.de/author/'+transform_to_name(wo);
+	workobject=workobject.replace(/– Wiki.*/,'');
+	workobject=workobject.replace(/- Wiki.*/,'');
+	workobject=workobject.replace(/\| .*/,'');
+	return transform_to_name(workobject);
 };
-
+// 'http://www.librarything.de/author/'+
